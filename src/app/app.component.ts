@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { AppService } from './app.service';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
+import { AuthService } from './services/auth.service';
+import { StorageService } from './services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +8,39 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private app: AppService, private http: HttpClient, private router: Router) {
-      this.app.authenticate(undefined, undefined);
-    }
-    logout() {
-      this.http.post('logout', {}).pipe(
-         finalize(() => {
-          this.app.authenticated = false;
-          this.router.navigateByUrl('/login');
-      })).subscribe();
-    }
+  private roles: string[] = [];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
 
+  constructor(private storageService: StorageService, private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.storageService.isLoggedIn();
+
+    if (this.isLoggedIn) {
+      const user = this.storageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+      this.username = user.username;
+    }
+  }
+
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: res => {
+        console.log(res);
+        this.storageService.clean();
+
+        window.location.reload();
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+  }
 }
