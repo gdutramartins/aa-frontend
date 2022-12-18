@@ -13,6 +13,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { httpInterceptorProviders } from './interceptor/http.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -35,7 +36,8 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule    
+    FormsModule,
+    BrowserAnimationsModule    
   ],
   providers: [
     AppService, 
