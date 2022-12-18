@@ -63,7 +63,8 @@
               "browserTarget": "aa-frontend:build:production"
             },
             "development": {
-              "browserTarget": "aa-frontend:build:development"
+              "browserTarget": "aa-frontend:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

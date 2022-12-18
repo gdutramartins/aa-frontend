@@ -11,6 +11,8 @@ import { Routes } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FormsModule } from '@angular/forms';
+import { BoardUserComponent } from './components/board-user/board-user.component';
+import { httpInterceptorProviders } from './interceptor/http.interceptor';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -26,7 +28,8 @@ const routes: Routes = [
     RegisterComponent,
     ProfileComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    BoardUserComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ const routes: Routes = [
     FormsModule    
   ],
   providers: [
-    AppService
+    AppService, 
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
