@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-//const AUTH_API = 'http://localhost:8080/api/auth/';
-const  AUTH_API = '/api/auth/';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,11 +11,14 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthService {
+
+  private API_PATH: string = environment.api + 'auth/';
+
   constructor(private http: HttpClient) {}
 
   public login(username: string, password: string): Observable<any> {
     return this.http.post(
-      AUTH_API + 'signin',
+      this.API_PATH + 'signin',
       {
         username,
         password,
@@ -28,7 +29,7 @@ export class AuthService {
 
   public register(username: string, email: string, password: string): Observable<any> {
     return this.http.post(
-      AUTH_API + 'signup',
+      this.API_PATH + 'signup',
       {
         username,
         email,
@@ -39,6 +40,6 @@ export class AuthService {
   }
 
   public logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+    return this.http.post(this.API_PATH + 'signout', { }, httpOptions);
   }
 }

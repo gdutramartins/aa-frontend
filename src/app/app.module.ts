@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { httpInterceptorProviders } from './interceptor/http.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -37,7 +40,10 @@ const routes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule    
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatButtonModule
+    
   ],
   providers: [
     AppService, 
