@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from './services/auth.service';
 import { StorageService } from './services/storage.service';
 
@@ -7,14 +9,26 @@ import { StorageService } from './services/storage.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private storageService: StorageService, private authService: AuthService) { }
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+  
+  constructor(changeDetectorRef: ChangeDetectorRef, 
+              media: MediaMatcher, 
+              private storageService: StorageService, 
+              private authService: AuthService) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+
 
   ngOnInit(): void {
     this.isLoggedIn = this.storageService.isLoggedIn();
@@ -30,6 +44,10 @@ export class AppComponent {
     }
   }
 
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
   logout(): void {
     this.authService.logout().subscribe({
       next: res => {
@@ -42,4 +60,9 @@ export class AppComponent {
       }
     });
   }
+
+  
+
+
 }
+

@@ -16,6 +16,11 @@ import { httpInterceptorProviders } from './interceptor/http.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from  '@angular/material/toolbar';
+import { MatSidenavModule} from  '@angular/material/sidenav';
+import { MatListModule} from  '@angular/material/list';
+import { MatIconModule} from  '@angular/material/icon';
+import { MaterialModule } from 'src/material.module';
 
 
 const routes: Routes = [
@@ -41,8 +46,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatButtonModule
+    MaterialModule 
     
   ],
   providers: [
