@@ -27,13 +27,13 @@ export class AuthService {
     );
   }
 
-  public register(username: string, email: string, password: string): Observable<any> {
+  public register(username: string, password: string, nome: String): Observable<any> {
     return this.http.post(
       this.API_PATH + 'signup',
       {
         username,
-        email,
-        password,
+        nome,
+        password
       },
       httpOptions
     );

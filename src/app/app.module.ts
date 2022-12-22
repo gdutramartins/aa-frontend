@@ -10,7 +10,7 @@ import { HomeComponent } from './components/home/home..component';
 import { Routes } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { httpInterceptorProviders } from './interceptor/http.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,8 @@ import { MatSidenavModule} from  '@angular/material/sidenav';
 import { MatListModule} from  '@angular/material/list';
 import { MatIconModule} from  '@angular/material/icon';
 import { MaterialModule } from 'src/material.module';
+import { ErroDialogComponent } from './components/dialogs/erro-dialog/erro-dialog.component';
+import { SucessoDialogComponent } from './components/dialogs/sucesso-dialog/sucesso-dialog.component';
 
 
 const routes: Routes = [
@@ -38,7 +40,9 @@ const routes: Routes = [
     ProfileComponent,
     LoginComponent,
     HomeComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    ErroDialogComponent,
+    SucessoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MaterialModule 
     
   ],
