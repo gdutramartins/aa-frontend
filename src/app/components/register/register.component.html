@@ -10,7 +10,7 @@
       fxLayoutAlign="center center"
       fxLayoutGap="10px"
     >
-      <mat-card-content>
+      <div class="row">
         <mat-form-field appearance="fill" floatLabel="always">
           <mat-label>Nome</mat-label>
           <input
@@ -22,6 +22,8 @@
             id="nome"
           />
         </mat-form-field>
+      </div>
+      <div class="row">
         <mat-form-field appearance="fill" floatLabel="always">
           <mat-label>E-mail</mat-label>
           <input
@@ -35,7 +37,8 @@
           <mat-error *ngIf="hasError('email', 'email')">formato inválido</mat-error>
           
         </mat-form-field>
-
+      </div>
+      <div class="row">
         <mat-form-field appearance="fill">
           <mat-label>Senha</mat-label>
           <input
@@ -61,7 +64,7 @@
             >campo obrigatório</mat-error
           >
         </mat-form-field>
-      </mat-card-content>
+      </div>
       <mat-card-actions>
         <button mat-raised-button color="primary" [disabled]="!usuarioForm.valid">
           Salvar
