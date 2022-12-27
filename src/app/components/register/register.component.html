@@ -18,7 +18,7 @@
             type="text"
             name="nome"
             placeholder="nome completo"
-            formControlName="nome" 
+            formControlName="nome"
             id="nome"
           />
         </mat-form-field>
@@ -27,11 +27,13 @@
           <input
             matInput
             type="email"
-            formControlName="email" 
+            formControlName="email"
             id="email"
             placeholder="e-mail"
           />
           <mat-error *ngIf="hasError('email', 'required')">campo obrigatório</mat-error>
+          <mat-error *ngIf="hasError('email', 'email')">formato inválido</mat-error>
+          
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -40,22 +42,39 @@
             matInput
             name="password"
             [type]="hidePassword ? 'password' : 'text'"
-            formControlName="password" 
+            formControlName="password"
             id="password"
           />
           <button
+            type="button"
             mat-icon-button
             matSuffix
             (click)="hidePassword = !hidePassword"
             [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hidePassword"
           >
-            <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
           </button>
-          <mat-error *ngIf="hasError('password', 'required')">campo obrigatório</mat-error>
+          <mat-error *ngIf="hasError('password', 'required')"
+            >campo obrigatório</mat-error
+          >
         </mat-form-field>
       </mat-card-content>
-      <mat-card-actions> </mat-card-actions>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!usuarioForm.valid">
+          Salvar
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="navigateToHome()"
+        >
+          Cancel
+        </button>
+      </mat-card-actions>
     </form>
   </mat-card>
 </section>
