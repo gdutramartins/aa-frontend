@@ -23,6 +23,8 @@ import { MatIconModule} from  '@angular/material/icon';
 import { MaterialModule } from 'src/material.module';
 import { ErroDialogComponent } from './components/dialogs/erro-dialog/erro-dialog.component';
 import { SucessoDialogComponent } from './components/dialogs/sucesso-dialog/sucesso-dialog.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 
 const routes: Routes = [
@@ -42,7 +44,9 @@ const routes: Routes = [
     HomeComponent,
     BoardUserComponent,
     ErroDialogComponent,
-    SucessoDialogComponent
+    SucessoDialogComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

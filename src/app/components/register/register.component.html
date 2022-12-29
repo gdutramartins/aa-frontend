@@ -1,83 +1,101 @@
-<section fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-card fxFlex="500px" fxFlex.xs="100%">
-    <mat-card-title>Cadastro de novo usuário do Amigo Azul</mat-card-title>
-    <form
-      [formGroup]="usuarioForm"
-      autocomplete="off"
-      novalidate
-      (ngSubmit)="criaUsuario()"
-      fxLayout="column wrap"
-      fxLayoutAlign="center center"
-      fxLayoutGap="10px"
-    >
-      <div class="row">
-        <mat-form-field appearance="fill" floatLabel="always">
-          <mat-label>Nome</mat-label>
-          <input
-            matInput
-            type="text"
-            name="nome"
-            placeholder="nome completo"
-            formControlName="nome"
-            id="nome"
-          />
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="fill" floatLabel="always">
-          <mat-label>E-mail</mat-label>
-          <input
-            matInput
-            type="email"
-            formControlName="email"
-            id="email"
-            placeholder="e-mail"
-          />
-          <mat-error *ngIf="hasError('email', 'required')">campo obrigatório</mat-error>
-          <mat-error *ngIf="hasError('email', 'email')">formato inválido</mat-error>
-          
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="fill">
-          <mat-label>Senha</mat-label>
-          <input
-            matInput
-            name="password"
-            [type]="hidePassword ? 'password' : 'text'"
-            formControlName="password"
-            id="password"
-          />
-          <button
-            type="button"
-            mat-icon-button
-            matSuffix
-            (click)="hidePassword = !hidePassword"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hidePassword"
-          >
-            <mat-icon>{{
-              hidePassword ? "visibility_off" : "visibility"
-            }}</mat-icon>
-          </button>
-          <mat-error *ngIf="hasError('password', 'required')"
-            >campo obrigatório</mat-error
-          >
-        </mat-form-field>
-      </div>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" [disabled]="!usuarioForm.valid">
-          Salvar
-        </button>
-        <button
-          type="button"
-          mat-raised-button
-          color="warn"
-          (click)="navigateToHome()"
-        >
-          Cancel
-        </button>
-      </mat-card-actions>
-    </form>
-  </mat-card>
-</section>
+<main id="main">
+  <section id="contact" class="contact">
+    <div class="section-header">
+      <h2>Cadastro de novo usuário do Amigo Azul</h2>
+      <p>
+        Para participar como amigo azul é ncessário o cadastro de um usuário que
+        permitirá cadastro de quantos participantes desejar...
+      </p>
+    </div>
+    <div class="container d-flex justify-content-center">
+      <form
+        [formGroup]="usuarioForm"
+        autocomplete="off"
+        novalidate
+        (ngSubmit)="criaUsuario()"
+        fxLayout="column wrap"
+        fxLayoutAlign="center center"
+        fxLayoutGap="10px"
+      >
+        <div class="row">
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Nome</mat-label>
+            <input
+              matInput
+              type="text"
+              name="nome"
+              placeholder="nome completo"
+              formControlName="nome"
+              id="nome"
+              class="form-control"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>E-mail</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              id="email"
+              placeholder="e-mail"
+            />
+            <mat-error *ngIf="hasError('email', 'required')"
+              >campo obrigatório</mat-error
+            >
+            <mat-error *ngIf="hasError('email', 'email')"
+              >formato inválido</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="fill">
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              name="password"
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              id="password"
+            />
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword"
+            >
+              <mat-icon>{{
+                hidePassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+            <mat-error *ngIf="hasError('password', 'required')"
+              >campo obrigatório</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6 text-center">
+            <button
+              class="btn btn-primary"
+              [disabled]="!usuarioForm.valid"
+            >
+              Salvar
+            </button>
+          </div>
+          <div class="col-md-6 text-center">
+            <button
+              type="button"
+              class="btn btn-light"
+              (click)="navigateToHome()"
+            >
+              Voltar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
