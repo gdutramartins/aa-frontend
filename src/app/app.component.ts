@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from './services/auth.service';
+import { LoadingService } from './services/loading.service';
 import { StorageService } from './services/storage.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(changeDetectorRef: ChangeDetectorRef, 
               media: MediaMatcher, 
               private storageService: StorageService, 
-              private authService: AuthService) {
+              private authService: AuthService,
+              public loadingService: LoadingService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

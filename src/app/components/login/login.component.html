@@ -1,18 +1,84 @@
-<div class="col-md-12">
-	<div class="card card-container">
-	  <img
-		id="profile-img"
-		src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-		class="profile-img-card"
-	  />
-	  <form
-		*ngIf="!isLoggedIn"
-		name="form"
-		(ngSubmit)="f.form.valid && onSubmit()"
-		#f="ngForm"
-		novalidate
-	  >
-		<div class="form-group">
+<main id="main">
+  <section>
+    <div class="section-header">
+      <h2>Entrar no Amigo Azul</h2>
+      <p>Informe e-mail e senha</p>
+    </div>
+
+    <div class="container d-flex justify-content-center flex-column align-items-center">
+      <div class="login-form-content">
+      <form
+        class=""
+        *ngIf="!isLoggedIn"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate        
+      >
+        <div class="form-row my-3">
+          <div class="form-group col-md-12">
+            <label for="username">E-mail</label>
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              placeholder="E-mail"
+              [(ngModel)]="form.username"
+              #username="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+              required
+            />
+            <div
+              *ngIf="username.errors && f.submitted"
+              class="invalid-feedback"
+            >
+              Campo obrigatório
+            </div>            
+          </div>
+        </div>
+        <div class="row my-3">
+          <div class="col-md-12">
+            <label for="password">Senha</label>
+            <input
+              placeholder="Senha"
+              type="password"
+              class="form-control"
+              name="password"
+              [(ngModel)]="form.password"
+              required
+              #password="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+            />
+            <div
+              *ngIf="password.errors && f.submitted"
+              class="invalid-feedback"
+            >
+              <div *ngIf="password.errors['required']">Senha é obrigatória</div>
+            </div>
+          </div>
+        </div>
+        <div class="row p-2">          
+            <button class="btn btn-primary btn-block p-2">Entrar</button>          
+        </div>
+        <div class="row my-3 ">
+          <div class="form-group">
+            <div
+              *ngIf="f.submitted && isLoginFailed"
+              class="alert alert-danger"
+              role="alert"
+            >
+              {{ errorMessage }}
+            </div>
+          </div>
+        </div>        
+      </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- <div class="col-md-12">
+	  	<div class="form-group">
 		  <label for="username">Username</label>
 		  <input
 			type="text"
@@ -62,4 +128,4 @@
 		Logged in as {{ roles }}.
 	  </div>
 	</div>
-  </div>
+  </div> -->

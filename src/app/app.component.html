@@ -1,5 +1,6 @@
-
-
+<ng-container *ngIf="loadingService.isLoading$ | async">
+  <div id="preloader"></div>
+</ng-container>
 <app-header></app-header>
 
 <router-outlet></router-outlet>
