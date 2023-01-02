@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Role } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { UtilsService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +10,14 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  private roles: string[] = [];
+  private roles: Role[] | undefined;
   public isLoggedIn = false;
   public username?: string;
 
   constructor(
-    private storageService: StorageService,
-    private authService: AuthService
+    public storageService: StorageService,
+    private authService: AuthService,
+    private utilsService: UtilsService
   ) {}
 
   public ngOnInit(): void {
@@ -22,9 +25,11 @@ export class HeaderComponent {
 
     if (this.isLoggedIn) {
       const user = this.storageService.getUser();
-      this.roles = user.roles;
+      if (user) {
+        this.roles = user.roles;
 
-      this.username = user.username;
+        this.username = user.username;
+      }
     }
   }
 
@@ -33,7 +38,7 @@ export class HeaderComponent {
       next: (res) => {
         console.log(res);
         this.storageService.clean();
-        window.location.reload();
+        this.utilsService.navigateToHome();
       },
       error: (err) => {
         console.log(err);

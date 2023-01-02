@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HttpErrorHandlerService } from 'src/app/services/http-error-handler.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { UtilsService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private dialog: MatDialog,
-    private router: Router,
     private dialogService: DialogService,
-    private httpErroService: HttpErrorHandlerService
+    private httpErroService: HttpErrorHandlerService,
+    private utilsService: UtilsService
   ) {}
 
   public ngOnInit(): void {
@@ -35,10 +35,6 @@ export class RegisterComponent implements OnInit {
     return this.usuarioForm.controls[controlName].hasError(errorName);
   };
 
-  public navigateToHome = () => {
-    this.router.navigate(['/home']);
-  };
-
   public criaUsuario(): void {
     this.authService
       .register(
@@ -48,12 +44,17 @@ export class RegisterComponent implements OnInit {
       )
       .subscribe({
         next: (data) => {
-          this.dialogService.showSucessoDialog('Novo usuário cadastrado com sucesso', this.navigateToHome);
+          this.dialogService.showSucessoDialog('Novo usuário cadastrado com sucesso', this.utilsService.navigateToHome);
         },
         error: (err) => {
-          this.httpErroService.handleError(err, this.navigateToHome);
+          this.httpErroService.handleError(err, this.utilsService.navigateToHome);
           
         },
       });
   }
+
+  public navigateToHome() {
+    this.utilsService.navigateToHome();
+  }
+
 }
