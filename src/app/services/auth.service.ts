@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private API_PATH: string = environment.api + 'auth/';
+  private API_PATH: string = environment.baseUrl + 'api/auth/';
   
   constructor(private http: HttpClient) {}
 

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
-  private API_PATH = environment.api + 'test/';
+  private API_PATH = environment.baseUrl + 'api/test/';
   
   constructor(private http: HttpClient) {
 
