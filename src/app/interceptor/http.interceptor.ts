@@ -15,7 +15,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     if (this.storageService.isLoggedIn()) {
       console.log('passei pelo Interceptor com usuário autenticado');
       req = req.clone({
-        headers: req.headers.set('Access-Control-Allow-Origin', 'https://amigo-azul.herokuapp.com'),
+        
         withCredentials: true        
       });
     }
