@@ -12,10 +12,9 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
 
-    if (this.storageService.isLoggedIn()) {
+    if (true || this.storageService.isLoggedIn()) {
       console.log('passei pelo Interceptor com usuário autenticado');
       req = req.clone({
-        
         withCredentials: true        
       });
     }
