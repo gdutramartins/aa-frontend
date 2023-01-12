@@ -15,7 +15,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     if (true || this.storageService.isLoggedIn()) {
       console.log('passei pelo Interceptor com usuário autenticado');
       req = req.clone({
-        withCredentials: true        
+        withCredentials: true
+        
       }); 
     }
     

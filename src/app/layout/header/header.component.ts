@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Role } from 'src/app/model/user.model';
+import { RoleDTO } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UtilsService } from 'src/app/services/util.service';
@@ -10,7 +10,7 @@ import { UtilsService } from 'src/app/services/util.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  private roles: Role[] | undefined;
+  private roles: RoleDTO[] | undefined;
   public isLoggedIn = false;
   public username?: string;
 

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../model/user.model';
+import { UserDTO } from '../model/user.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,8 +17,8 @@ export class AuthService {
   
   constructor(private http: HttpClient) {}
 
-  public login(username: string, password: string): Observable<User> {
-    return this.http.post<User>(
+  public login(username: string, password: string): Observable<UserDTO> {
+    return this.http.post<UserDTO>(
       this.API_PATH + 'signin',
       {
         username,

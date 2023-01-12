@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { User } from '../model/user.model';
+import { UserDTO } from '../model/user.model';
 
 const USER_KEY = 'auth-user';
 
@@ -21,13 +21,13 @@ export class StorageService {
     this.setUsuarioAutenticado(false);
   }
 
-  public saveUser(user: User): void {
+  public saveUser(user: UserDTO): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
     this.setUsuarioAutenticado(true);
   }
 
-  public getUser(): User | null {
+  public getUser(): UserDTO | null {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);

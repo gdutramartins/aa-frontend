@@ -4,15 +4,15 @@ export enum RoleNameEnum {
 	ROLE_ADMIN = 'ROLE_ADMIN'
 }
 
-export class Role {
+export class RoleDTO {
     public id: number | undefined;
 	public name: RoleNameEnum | undefined;
 }
 
-export class User {
+export class UserDTO {
     public id: number | undefined;
 	public username: string | undefined;
     public nome: string | undefined;
-    public roles: Role[] | undefined;
+    public roles: RoleDTO[] | undefined;
 }
 
